@@ -1,7 +1,6 @@
 <?php
- 
-require_once __DIR__."/../controllers/db.class.php";
-require_once __DIR__."/../models/user.class.php";
+
+require_once __DIR__."/Class/userClass.php";
 /*
 // Users
 class Users

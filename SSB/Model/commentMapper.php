@@ -1,7 +1,5 @@
 <?php
- 
-require_once __DIR__."/../controllers/db.class.php";
-require_once __DIR__."/../models/comment.class.php";
+require_once __DIR__."/Class/commentClass.php";
 /*
 //comment_mapper
 class comment_mapper
@@ -89,14 +87,8 @@ class comment_mapper
 
     */
 
-    <?php
 
-/**
- * Created by PhpStorm.
- * User: vmadmin
- * Date: 29.05.2016
- * Time: 21:21
- */
+
 class Comments
 {
 

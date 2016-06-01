@@ -1,7 +1,5 @@
 <?php
-require_once __DIR__.'/../controllers/db.class.php';
-require_once __DIR__."/../models/post.class.php";
-require_once __DIR__."/../models/like.class.php";
+require_once __DIR__."/Class/postClass.php";
 
 
 

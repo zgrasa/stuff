@@ -1,6 +1,6 @@
 <?php
 class Post
-{
+{   // Deklaration Variablen
     private $id;
     private $userId;
     private $title;
@@ -47,7 +47,7 @@ class Post
         $this->datetime = $datetime;
     }
 
-    function __construct($id, $userId, $title, $content, $datetime)
+    function __construct($id, $userId, $title, $content, $datetime) //Constructor
     {
         $this->id = $id;
         $this->userId = $userId;
