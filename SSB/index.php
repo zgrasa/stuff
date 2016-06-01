@@ -12,7 +12,7 @@ require_once __DIR__. '/Model/commentMapper.php';
 
 <!DOCTYPE HTML>
 <html>
-<?php include_once __DIR__. '/body/head.php' ?>
+<?php include_once __DIR__. 'View/body/head.php' ?>
 
 <body>
 
@@ -20,11 +20,11 @@ require_once __DIR__. '/Model/commentMapper.php';
 	<div id="wrapper">
 
 		<!-- Header -->
-	<?php include_once __DIR__. '/body/header.php' ?>
+	<?php include_once __DIR__. 'View/body/header.php' ?>
 
 
 		<!-- Menu -->
-	<?php include_once __DIR__. '/body/menu.php' ?>
+	<?php include_once __DIR__. 'View/body/menu.php' ?>
 
 
 		<!-- Main -->
@@ -44,14 +44,14 @@ require_once __DIR__. '/Model/commentMapper.php';
 			</section>
 
 			<!--Footer-->
-			<?php include_once __DIR__. '/body/footer.php' ?>
+			<?php include_once __DIR__. 'View/body/footer.php' ?>
 
 		</section>
 
 	</div>
 
 	<!-- Scripts -->
-	<?php include_once __DIR__. '/body/scripts.php' ?>
+	<?php include_once __DIR__. 'View/body/scripts.php' ?>
 
 </body>
 
