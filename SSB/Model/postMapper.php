@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__."/Class/postClass.php";
+require_once __DIR__.'/../Class/postClass.php';
 
 
 
@@ -202,7 +202,7 @@ class Blog
         $this->file = $file;
 
         $filecontent = file_get_contents($this->file);
-        preg_match_all("/(?P<id>\d*)|(?P<userid>\d*)|(?P<title>.*)|(?P<content>.*)|(?P<datetime>.*)eol/Us",
+        preg_match_all('/(?P<id>\d*)|(?P<userid>\d*)|(?P<title>.*)|(?P<content>.*)|(?P<datetime>.*)eol/Us',
             $filecontent, $blogentries, PREG_SET_ORDER);
 
         foreach ($blogentries as $entry) {

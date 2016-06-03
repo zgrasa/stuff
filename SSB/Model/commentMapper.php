@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__."/Class/commentClass.php";
+require_once __DIR__."/../Class/commentClass.php";
 /*
 //comment_mapper
 class comment_mapper
@@ -129,7 +129,7 @@ class Comments
         $this->file = $file;
 
         $filecontent = file_get_contents($this->file);
-        preg_match_all("/(?P<id>\d*)|(?P<blogId>\d*)|(?P<userid>\d*)|(?P<comment>.*)|(?P<datetime>.*)eol/Us",
+        preg_match_all('/(?P<id>\d*)|(?P<blogId>\d*)|(?P<userId>\d*)|(?P<comment>.*)|(?P<datetime>.*)eol/Us',
             $filecontent, $comments, PREG_SET_ORDER);
 
         foreach ($comments as $comment) {
