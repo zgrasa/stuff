@@ -2,13 +2,13 @@
 
 require_once __DIR__ . '/View/body/head.html';
 require_once __DIR__ . '/Class/User.php';
-require_once __DIR__ . '/Model/userMapper.php';
-require_once __DIR__ . '/Model/postMapper.php';
-require_once __DIR__ . '/Model/commentMapper.php';
+require_once __DIR__ . '/Model/Users.php';
+require_once __DIR__ . '/Model/Posts.php';
+require_once __DIR__ . '/Model/Comments.php';
 require_once __DIR__ . '/Controller/menuController.php';
 require_once __DIR__ . '/Controller/sessionController.php';
 
-$usermapper = new userMapper();
+$usermapper = new Users();
 ?>
 
 <body>
