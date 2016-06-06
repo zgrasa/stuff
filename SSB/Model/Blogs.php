@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__.'/../Class/Post.php';
 
-class Blog
+class Blogs
 {
     private $file = null;
     
