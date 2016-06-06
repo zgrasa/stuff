@@ -129,7 +129,7 @@ class Comments
         $this->file = $file;
 
         $filecontent = file_get_contents($this->file);
-        preg_match_all('/(?P<id>\d*)|(?P<blogId>\d*)|(?P<userId>\d*)|(?P<comment>.*)|(?P<datetime>.*)eol/Us',
+        preg_match_all('/(?P<id>\d*)§(?P<blogId>\d*)§(?P<userId>\d*)§(?P<comment>.*)§(?P<datetime>.*)eol/Us',
             $filecontent, $comments, PREG_SET_ORDER);
 
         foreach ($comments as $comment) {
