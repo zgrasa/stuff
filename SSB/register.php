@@ -12,8 +12,8 @@ $mapper = new userMapper();
         <article class="post">
             <header>
                 <div class="title">
-                    <h2>Benutzer-Registration</h2>
-                    <p>Erstelle hier dein Benutzer-Konto</p>
+                    <h2>Registrierung</h2>
+                    <p>Erstelle hier dein eigenes Konto</p>
                     <?php
                     if(isset($_POST["email"])&&isset($_POST["password"])&&isset($_POST["password_repeat"])){
                         $email = $_POST["email"];
@@ -70,35 +70,3 @@ $mapper = new userMapper();
 
 </body>
 </html>
-
-
-<!--
-<div class="container">
-      <form method="post" action="/admin/registerAction">
-        <div class="inline">
-            <input class="field" type="text" id="prename" name="prename" required>
-            <label class="label" for="prename">Vorname</label>
-        </div>
-        <div class="inline">
-            <input class="field" type="text" id="name" name="name" required>
-            <label class="label" for="name">Name</label>
-        </div>
-        <div class="inline">
-            <input class="field" type="text" id="username" name="username" required>
-            <label class="label" for="username">Username</label>
-        </div>
-        <div class="inline">
-            <input class="field" type="password" id="password" name="password" required>
-            <label class="label" for="password" id="passwordLabel">Passwort</label>
-        </div>
-        <div class="inline">
-            <input class="field" type="password" id="repeatpassword" name="repeatpassword" required>
-            <label class="label" for="repeatpassword" id="repeatpasswordLabel">Passwort wiederholen</label>
-        </div>
-        <div class="inline">
-          <button class="button">
-            Registrieren
-          </button>
-        </div>
-        </form>
-        </div>
