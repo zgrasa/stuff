@@ -147,7 +147,7 @@ class Comments
                 continue;
             }
 
-            $data .= $comment->getId() . '|' . $comment->getBlogId() . '|' . $comment->getUserId() . '|' . $comment->getComment() . '|' . $comment->getDatetime()->format('Y-m-d H:i:s') . "eol\n";
+            $data .= $comment->getId() . '§' . $comment->getBlogId() . '§' . $comment->getUserId() . '§' . $comment->getComment() . '§' . $comment->getDatetime()->format('Y-m-d H:i:s') . "eol\n";
         }
 
         file_put_contents($this->file, $data);
