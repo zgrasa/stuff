@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../Class/User.php';
 
-class userMapper
+class UserMapper
 {
     private $file = null;
     private $users = [];
