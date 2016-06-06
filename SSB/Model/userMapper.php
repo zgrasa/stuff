@@ -13,7 +13,7 @@ class userMapper
         $userStrings = [];
 
         $filecontent = file_get_contents($this->file);
-        preg_match_all("/(?P<id>\d*)§§(?P<mail>.*)§§(?P<pw>.*)eol/Us",
+        preg_match_all("/(?P<id>\d*)§(?P<mail>.*)§(?P<pw>.*)eol/Us",
             $filecontent, $userStrings, PREG_SET_ORDER);
 
         foreach ($userStrings as $user) {
@@ -47,7 +47,7 @@ class userMapper
                 continue;
             }
 
-            $data .= $user->getId() . '§§' . $user->getEmail() . '§§' . $user->getPassword() . "eol\n";
+            $data .= $user->getId() . '§' . $user->getEmail() . '§' . $user->getPassword() . "eol\n";
         }
 
         file_put_contents($this->file, $data);
