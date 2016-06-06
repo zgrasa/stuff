@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../Class/Comment.php';
 
-class CommentMapper
+class Comment
 {
     private $file = null;
     private $users = [];
