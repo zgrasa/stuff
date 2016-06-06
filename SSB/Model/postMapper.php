@@ -220,7 +220,7 @@ class Blog
                 continue;
             }
 
-            $data .= $entry->getId() . '|' . $entry->getUserId() . '|' . $entry->getTitle() . '|' . $entry->getContent() . '|' . $entry->getDatetime()->format('Y-m-d H:i:s') . "eol\n";
+            $data .= $entry->getId() . '§' . $entry->getUserId() . '§' . $entry->getTitle() . '§' . $entry->getContent() . '§' . $entry->getDatetime()->format('Y-m-d H:i:s') . "eol\n";
         }
 
         file_put_contents($this->file, $data);
