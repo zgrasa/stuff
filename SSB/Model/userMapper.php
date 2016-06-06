@@ -39,20 +39,6 @@ class userMapper
         return $this->users;
     }
 
-    function save()
-    {
-        $data = '';
-        foreach ($this->users as $user) {
-            if ($user == null) {
-                continue;
-            }
-
-            $data .= $user->getId() . '§' . $user->getEmail() . '§' . $user->getPassword() . "eol\n";
-        }
-
-        file_put_contents($this->file, $data);
-    }
-
     public function getUser($email, $password)
     {
         foreach ($this->users as $user) {
@@ -74,5 +60,19 @@ class userMapper
                 return true;
         }
         return false;
+    }
+    
+    function save()
+    {
+        $data = '';
+        foreach ($this->users as $user) {
+            if ($user == null) {
+                continue;
+            }
+
+            $data .= $user->getId() . '§' . $user->getEmail() . '§' . $user->getPassword() . "eol\n";
+        }
+
+        file_put_contents($this->file, $data);
     }
 }
