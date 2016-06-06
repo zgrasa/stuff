@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../Class/Comment.php';
 
-class Comment
+class Comments
 {
     private $file = null;
     private $users = [];
