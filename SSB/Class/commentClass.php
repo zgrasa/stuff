@@ -2,14 +2,14 @@
 
 class Comment
 {
-	private $id;
+    private $id;
     private $blogId;
     private $userId;
     private $comment;
     private $datetime;
 
 
-   public function getId()
+    public function getId()
     {
         return $this->id;
     }
