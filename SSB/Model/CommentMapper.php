@@ -1,9 +1,24 @@
 <?php
 require_once __DIR__ . '/../Class/Comment.php';
+
 class CommentMapper
 {
     private $file = null;
     private $users = [];
+    
+    function __construct()
+    {
+        $this->file = __DIR__ . '\SaveFiles\Comments.txt';
+        $comments = [];
+        $filecontent = file_get_contents($this->file);
+        preg_match_all('/(?P<id>\d*)§(?P<blogId>\d*)§(?P<userId>\d*)§(?P<comment>.*)§(?P<datetime>.*)eol/Us',
+            $filecontent, $comments, PREG_SET_ORDER);
+        foreach ($comments as $comment) {
+            $this->comments[$comment['id']] = new Comment($comment['id'], $comment['blogId'], $comment['userId'],
+                $comment['comment'],
+                new DateTime($comment['datetime']));
+        }
+    }
     
     public function createCommentEntry($blogId, $userId, $comment)
     {
@@ -33,19 +48,6 @@ class CommentMapper
         unset($this->comments[$id]);
     }
     
-    function __construct()
-    {
-        $this->file = __DIR__ . '\SaveFiles\Comments.txt';
-        $comments = [];
-        $filecontent = file_get_contents($this->file);
-        preg_match_all('/(?P<id>\d*)§(?P<blogId>\d*)§(?P<userId>\d*)§(?P<comment>.*)§(?P<datetime>.*)eol/Us',
-            $filecontent, $comments, PREG_SET_ORDER);
-        foreach ($comments as $comment) {
-            $this->comments[$comment['id']] = new Comment($comment['id'], $comment['blogId'], $comment['userId'],
-                $comment['comment'],
-                new DateTime($comment['datetime']));
-        }
-    }
     public function createComment($blogId, $userId, $comment)
     {
         $newId = $this->getNextId();
@@ -73,6 +75,4 @@ class CommentMapper
 
         file_put_contents($this->file, $data);
     }
-    
-    
 }
