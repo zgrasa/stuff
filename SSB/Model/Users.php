@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../Class/User.php';
 
-class User
+class Users
 {
     private $file = null;
     private $users = [];
