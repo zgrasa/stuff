@@ -1,8 +1,8 @@
 <?php
 
-require_once __DIR__ . '/Model/userMapper.php';
+require_once __DIR__ . '/Model/User.php';
 require_once __DIR__ . '/Controller/sessionController.php';
-$mapper = new userMapper(); ?>
+$mapper = new User(); ?>
 
 <body>
 <?php
