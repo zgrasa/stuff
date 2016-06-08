@@ -39,7 +39,7 @@ SessionController::initializeSessionManager();
         </ul>
         <ul>
             <li class="logout">
-                <button type="button" href="logout.php" >Logout</button>
+                <a href="logout.php" >Logout</a>
             </li>
         </ul>
 
