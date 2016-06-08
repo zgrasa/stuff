@@ -9,8 +9,10 @@ require_once __DIR__ . '/Model/Users.php';
  * Time: 17:40
  */
 $usermapper = new Users();
-if(!SessionController::isLoggedIn()){
-SessionController::killSession();
-} else 'Sie sind gar nicht eingelogged';
+if(!SessionController::isLoggedIn()) {
+    SessionController::killSession();
+    echo $usermapper->getUserById(SessionController::get('id'))->getEmail().' wurde erfolgreich ausgelogged';
+} else {
+    echo 'Sie sind gar nicht eingelogged';
+}
 
-echo $usermapper->getUserById(SessionController::get('id'))->getEmail().' wurde erfolgreich ausgelogged';

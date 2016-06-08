@@ -25,11 +25,7 @@ SessionController::initializeSessionManager();
     } else{
         echo 'Sie sind nicht eingelogged';
     }
-
-
-    function logout() {
-        SessionController::killSession();
-    }
+    
 
     ?>
     <nav class="links">
@@ -43,7 +39,7 @@ SessionController::initializeSessionManager();
         </ul>
         <ul>
             <li class="logout">
-                <button type="button" onclick="logout()" >Logout</button>
+                <button type="button" onclick="" >Logout</button>
             </li>
         </ul>
 
