@@ -53,11 +53,11 @@ class Comments
         $newId = $this->getNextId();
         $this->users[$newId] = new User($newId, $mail, md5($pw));
     }
-    private function getNextId()
-    {
-        end($this->users);
-        return key($this->users) + 1;
-    }
+//    private function getNextId()
+//    {
+//        end($this->users);
+//        return key($this->users) + 1;
+//    }
     public function getUsers()
     {
         return $this->users;

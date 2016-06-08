@@ -2,6 +2,7 @@
 
 require_once __DIR__ . '/Model/Users.php';
 require_once __DIR__ . '/Controller/sessionController.php';
+SessionController::initializeSessionManager();
 $mapper = new Users(); ?>
 
 <body>

@@ -3,12 +3,13 @@
 require_once __DIR__ . '/View/body/head.html';
 require_once __DIR__ . '/Class/User.php';
 require_once __DIR__ . '/Model/Users.php';
-require_once __DIR__ . '/Model/Posts.php';
+require_once __DIR__ . '/Model/Blogs.php';
 require_once __DIR__ . '/Model/Comments.php';
 require_once __DIR__ . '/Controller/menuController.php';
 require_once __DIR__ . '/Controller/sessionController.php';
 
 $usermapper = new Users();
+SessionController::initializeSessionManager();
 ?>
 
 <body>
@@ -21,7 +22,15 @@ $usermapper = new Users();
     
     if(SessionController::isLoggedIn()){
         echo 'als '.$usermapper->getUserById(SessionController::get('id'))->getEmail().' eingeloggt';
+    } else{
+        echo 'Sie sind nicht eingelogged';
     }
+
+
+    function logout() {
+        SessionController::killSession();
+    }
+
     ?>
     <nav class="links">
         <ul>
@@ -32,6 +41,13 @@ $usermapper = new Users();
                 <a href="register.php">Registrieren</a>
             </li>
         </ul>
+        <ul>
+            <li class="logout">
+                <button type="button" onclick="logout()" >Logout</button>
+            </li>
+        </ul>
+
+
     </nav>
 </header>
 
@@ -51,6 +67,10 @@ $usermapper = new Users();
             </header>
         </section>
 
+        <section id="blog">
+
+        </section>
+
     </section>
 
 </div>
@@ -59,3 +79,5 @@ $usermapper = new Users();
 </body>
 
 </html>
+
+
