@@ -26,7 +26,6 @@ SessionController::initializeSessionManager();
         echo 'Sie sind nicht eingelogged';
     }
     
-
     ?>
     <nav class="links">
         <ul>
@@ -42,8 +41,6 @@ SessionController::initializeSessionManager();
                 <a href="logout.php" >Logout</a>
             </li>
         </ul>
-
-
     </nav>
 </header>
 

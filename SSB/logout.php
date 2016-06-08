@@ -2,17 +2,25 @@
 
 require_once __DIR__ . '/Controller/sessionController.php';
 require_once __DIR__ . '/Model/Users.php';
-/**
- * Created by PhpStorm.
- * User: bzgras
- * Date: 08.06.2016
- * Time: 17:40
- */
+SessionController::initializeSessionManager();
+
 $usermapper = new Users();
-if(!SessionController::isLoggedIn()) {
+?>
+
+<body>
+<h1>Logout</h1>
+
+<?php
+
+if(SessionController::isLoggedIn() == true) {
+    SessionController::set("isLoggedIn", false);
     SessionController::killSession();
     echo $usermapper->getUserById(SessionController::get('id'))->getEmail().' wurde erfolgreich ausgelogged';
 } else {
     echo 'Sie sind gar nicht eingelogged';
 }
+
+?>
+</body>
+</html>
 

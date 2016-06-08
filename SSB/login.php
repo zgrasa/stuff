@@ -21,7 +21,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
         SessionController::set("LoggedIn", true);
         SessionController::set('id', $user->getID());
         echo SessionController::get('id');
-        header('Location: /index.php');
+        header('Location: /PhpstormProjects/stuff/ssb/index.php');
     } else {
         echo 'Benutzername/Passwort falsch';
     }
