@@ -7,16 +7,16 @@ class Blogs
     
     private $entries = [];
     
-    function __construct($file)
+    function __construct()
     {
         $this->file = __DIR__ . '\SaveFiles\Posts.txt';
 
         $filecontent = file_get_contents($this->file);
-        preg_match_all('/(?P<id>\d*)§(?P<userid>\d*)§(?P<title>.*)§(?P<content>.*)§(?P<datetime>.*)eol/Us',
+        preg_match_all("/(?P<id>\d*)§(?P<userid>\d*)§(?P<title>.*)§(?P<content>.*)§(?P<datetime>.*)eol/Us",
             $filecontent, $blogentries, PREG_SET_ORDER);
 
         foreach ($blogentries as $entry) {
-            $this->entries[$entry['id']] = new BlogEntry($entry['id'], $entry['userId'], $entry['title'],
+            $this->entries[$entry['id']] = new Post($entry['id'], $entry['userid'], $entry['title'],
                 $entry['content'],
                 new DateTime($entry['datetime']));
         }
@@ -24,7 +24,7 @@ class Blogs
     public function createEntry($user, $title, $content)
     {
         $newId = $this->getNextId();
-        $this->entries[$newId] = new BlogEntry($newId, $user, $title, $content, new DateTime());
+        $this->entries[$newId] = new Post($newId, $user, $title, $content, new DateTime());
     }
 
     private function getNextId()

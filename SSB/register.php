@@ -17,9 +17,9 @@ $mapper = new Users();
                     <p>Erstelle hier dein eigenes Konto</p>
                     <?php
                     if(isset($_POST["email"])&&isset($_POST["password"])&&isset($_POST["password_repeat"])){
-                        $email = $_POST["email"];
-                        $password = $_POST["password"];
-                        $password_repeat = $_POST["password_repeat"];
+                        $email = htmlspecialchars(trim($_POST["email"]));
+                        $password = trim($_POST["password"]);
+                        $password_repeat = trim($_POST["password_repeat"]);
                         if($password_repeat==$password){
                             if(!$mapper->doesUserExist($email)){
                                 $mapper->createUser($email,$password);
@@ -29,7 +29,7 @@ $mapper = new Users();
                                 SessionController::set("LoggedIn",true);
                                 header('Location: /index.php');
                             }else{
-                                echo 'user already exists';
+                                echo 'Diese email wird bereits benutzt';
                             }
                         }else{
                             echo 'Passwörter stimmen nicht überein';

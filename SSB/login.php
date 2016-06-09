@@ -7,13 +7,11 @@ $mapper = new Users(); ?>
 
 <body>
 <?php
-if (SessionController::isLoggedIn()) {
-    echo 'loggedIn';
-}
+
 
 if (isset($_POST['email']) && isset($_POST['password'])) {
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+    $email = htmlspecialchars(trim($_POST['email']));
+    $password = trim($_POST['password']);
     $user = $mapper->getUser($email, $password);
 
     if ($user != null) {
@@ -21,7 +19,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
         SessionController::set("LoggedIn", true);
         SessionController::set('id', $user->getID());
         echo SessionController::get('id');
-        header('Location: /PhpstormProjects/stuff/ssb/index.php');
+        header('Location: /index.php');
     } else {
         echo 'Benutzername/Passwort falsch';
     }
