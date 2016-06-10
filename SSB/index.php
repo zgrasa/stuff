@@ -24,7 +24,7 @@ SessionController::initializeSessionManager();
         <?php
 
         if (SessionController::isLoggedIn()) {
-            echo "<strong>Sie sind als " . $usermapper->getUserById(SessionController::get('id'))->getEmail() . " eingeloggt<strong>";
+            echo "<strong>Sie sind als " . $usermapper->getUserById(SessionController::get('id'))->getEmail() . " eingeloggt</strong>";
         }
 
         ?>
@@ -40,45 +40,36 @@ SessionController::initializeSessionManager();
                 echo "<li><a class='menu' href='register.php'>Registrieren</a></li>";
             }
             ?>
-            <!--       <li><a href="login.php">Login</a></li>
-                   <li class="menu"><a href="register.php">Registrieren</a></li>
-                   <li class="logout"><a href="logout.php">Logout</a></li> -->
         </ul>
     </nav>
-
+    <div class="clear"></div>
 </header>
 
 
-<div id="wrapper">
-
-    <div id="main">
-    </div>
-
-    <?php if (SessionController::isLoggedIn()) {
-        echo "<section id=\"newBlog\">
+<?php if (SessionController::isLoggedIn()) {
+    echo "<div id='newPost'>";
+    echo "<section id=\"newBlog\">
         <header>
             <h2>Neuer Blog erstellen</h2>
         </header> ";
 
-        if (isset($_POST['title']) && isset($_POST['message'])) {
-            $title = htmlspecialchars(trim($_POST['title']));
-            $message = htmlspecialchars(trim($_POST['message']));
-            if ($title != "") {
-                if ($message != "") {
-                    echo "Thema: " . $title . "<br>";
-                    echo "Message: " . $message;
-                    $blogmapper->createEntry(SessionController::get('id'), $title, $message);
-                    $blogmapper->save();
-                } else {
-                    echo "Es wird eine Nachricht benötigt";
-                }
+    if (isset($_POST['title']) && isset($_POST['message'])) {
+        $title = htmlspecialchars(trim($_POST['title']));
+        $message = htmlspecialchars(trim($_POST['message']));
+        if ($title != "") {
+            if ($message != "") {
+                $blogmapper->createEntry(SessionController::get('id'), $title, $message);
+                $blogmapper->save();
             } else {
-                echo "<span class='errormessage'> Der Post benötigt einen Titel!</span>";
+                echo "Es wird eine Nachricht benötigt";
             }
-
+        } else {
+            echo "<span class='errormessage'> Der Post benötigt einen Titel!</span>";
         }
 
-        echo "<form id=\"new\" method=\"post\" action=\"#\">
+    }
+
+    echo "<form id=\"new\" method=\"post\" action=\"#\">
             <div class=\"inline\">
             <label for=\"title\">Thema</label>
             </div>
@@ -92,11 +83,11 @@ SessionController::initializeSessionManager();
             <button id=\"postbutton\" type=\"submit\">Post</button>
         </form>
     </section>";
+    echo "</div>";
+} ?>
 
 
-    } ?>
-
-
+<div id="wrapper">
     <section id="blogEntries">
         <header>
             <h2>Blog</h2>
@@ -104,22 +95,22 @@ SessionController::initializeSessionManager();
         </header>
         <?php
         $posts = $blogmapper->getEntries();
+        $key=0;
         foreach ($posts as $post) {
+            $key++;
             $user = $usermapper->getUserById($post->getUserId());
             echo "<div class='post'>";
-            echo "<h3>" . $post->getTitle() ."</h3>";
-            echo "<div>". $user->getEmail() . " am ". $post->getDatetime()->format('Y-m-d H:i') ."</div>";
-            echo "<div>". $post->getContent() ."</div>";
+            echo "<h3 class='postTitle'>" . $post->getTitle() . "</h3>";
+            echo "<div class='postAuthor'>" . $user->getEmail() . " am " . $post->getDatetime()->format('Y-m-d H:i') . "</div>";
+            echo "<div class='postContent'>" . $post->getContent() . "</div>";
             if (SessionController::isLoggedIn() && SessionController::get('id') == $post->getUserId()) {
-                echo "<form action='delete.php?id=" . $post->getId() . "' method='post'><button class='delbutton' type='submit'>Eintrag löschen</button></form>";
+                echo "<form action='delete.php?id=" . $post->getId() . "' method='post'><button class='delbutton' type='submit'>Post löschen</button></form>";
+            }
+            if(SessionController::isLoggedIn()){
+                echo "<form action='/index.php?postId='" . $post->getId() . "' method='post'><button class='commentButton' type='submit'>Kommentieren</button></form>";
             }
             echo "</div>";
 
-
-
-
-
-//User: "  " schrieb am "  " Thema: "  " Content: "   "</div>";
 
         }
         ?>

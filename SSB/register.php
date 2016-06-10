@@ -9,12 +9,12 @@ $mapper = new Users();
 <body>
 <div id="wrapper">
     <div id="main">
-        <article class="post">
+        <article>
             <header>
                 <div class="title">
                     <h2>Registrierung</h2>
                     <p>Erstelle hier dein eigenes Konto</p>
-                    
+
                     <nav class="links">
                         <ul>
                             <li class="home"><a href="index.php">Home</a></li>
@@ -22,23 +22,25 @@ $mapper = new Users();
                         </ul>
                     </nav>
 
+                    <div class="clear"></div>
+
                     <?php
-                    if(isset($_POST["email"])&&isset($_POST["password"])&&isset($_POST["password_repeat"])){
+                    if (isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["password_repeat"])) {
                         $email = htmlspecialchars(trim($_POST["email"]));
                         $password = trim($_POST["password"]);
                         $password_repeat = trim($_POST["password_repeat"]);
-                        if($password_repeat==$password){
-                            if(!$mapper->doesUserExist($email)){
-                                $mapper->createUser($email,$password);
+                        if ($password_repeat == $password) {
+                            if (!$mapper->doesUserExist($email)) {
+                                $mapper->createUser($email, $password);
                                 $mapper->save();
                                 session_start();
-                                SessionController::set("id",$mapper->getUser($email,$password)->getId()) ;
-                                SessionController::set("LoggedIn",true);
+                                SessionController::set("id", $mapper->getUser($email, $password)->getId());
+                                SessionController::set("LoggedIn", true);
                                 header('Location: /index.php');
-                            }else{
+                            } else {
                                 echo 'Diese email wird bereits benutzt';
                             }
-                        }else{
+                        } else {
                             echo 'Passwörter stimmen nicht überein';
                         }
 
@@ -58,7 +60,7 @@ $mapper = new Users();
                         <div class="inline">
                             <label for="password">Passwort</label>
                         </div>
-                        <input type="password" id="password" name="password"  required>
+                        <input type="password" id="password" name="password" required>
                         <br>
                         <div class="inline">
                             <label for="password_repeat">Passwort wiederholen</label>
@@ -80,7 +82,7 @@ $mapper = new Users();
     });
 </script>
 
-<?php require_once __DIR__ . '/View/body/footer.html'?>
+<?php require_once __DIR__ . '/View/body/footer.html' ?>
 
 </body>
 </html>
