@@ -1,11 +1,29 @@
 <?php
 
 require_once __DIR__ . '/Model/Users.php';
+require_once __DIR__ . '/View/body/head.html';
 require_once __DIR__ . '/Controller/sessionController.php';
 SessionController::initializeSessionManager();
 $mapper = new Users(); ?>
 
 <body>
+<div id="wrapper">
+    <div id="main">
+        <article class="post">
+            <header>
+                <div class="title">
+                    <h2>Login</h2>
+                    <p>Bitte hier einloggen</p>
+                    
+                    <nav class="links">
+                        <ul>
+                            <li class="home"><a href="index.php">Home</a></li>
+                            <li><a href="register.php">Registrieren</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </header>
+
 <?php
 
 
@@ -27,20 +45,24 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 ?>
 <div class="login">
     <form method="post" action="login.php">
-        <div>
-            <input class="field" type="text" id="email" name="email" required>
-            <label for="email">Username</label>
-        </div>
         <div class="inline">
-            <input class="field" type="password" id="password" name="password" required>
+            <label for="email">Username</label>
+        </div>    
+        <input class="field" type="text" id="email" name="email" required>
+        <br>
+        <div class="inline">
             <label for="password">Passwort</label>
         </div>
+        <input class="field" type="password" id="password" name="password" required>
         <div>
-            <button type="submit" class="button">
+            <button class="submitbutton" type="submit" class="button">
                 login
             </button>
         </div>
     </form>
+</div>
+</article>
+</div>
 </div>
 <?php require_once __DIR__ . '/View/body/footer.html' ?>
 </body>

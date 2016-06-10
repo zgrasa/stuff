@@ -9,12 +9,19 @@ $mapper = new Users();
 <body>
 <div id="wrapper">
     <div id="main">
-
         <article class="post">
             <header>
                 <div class="title">
                     <h2>Registrierung</h2>
                     <p>Erstelle hier dein eigenes Konto</p>
+                    
+                    <nav class="links">
+                        <ul>
+                            <li class="home"><a href="index.php">Home</a></li>
+                            <li><a href="login.php">Login</a></li>
+                        </ul>
+                    </nav>
+
                     <?php
                     if(isset($_POST["email"])&&isset($_POST["password"])&&isset($_POST["password_repeat"])){
                         $email = htmlspecialchars(trim($_POST["email"]));
@@ -43,17 +50,23 @@ $mapper = new Users();
 
                 <div>
                     <div>
-                        <label for="emailInput">E-Mail</label>
+                        <div class="inline">
+                            <label for="emailInput">E-Mail</label>
+                        </div>
                         <input type="text" id="emailInput" name="email" required>
                         <br>
-                        <label for="password">Passwort ( min. 6 Zeichen, a-Z 0-9 )</label>
+                        <div class="inline">
+                            <label for="password">Passwort</label>
+                        </div>
                         <input type="password" id="password" name="password"  required>
                         <br>
-                        <label for="password_repeat">Passwort wiederholen</label>
+                        <div class="inline">
+                            <label for="password_repeat">Passwort wiederholen</label>
+                        </div>
                         <input type="password" id="password_repeat" name="password_repeat" required>
                     </div>
                     <div>
-                        <button type="submit">Registrieren</button>
+                        <button class="submitbutton" type="submit">Submit</button>
                     </div>
                 </div>
             </form>
