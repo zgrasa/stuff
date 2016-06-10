@@ -9,7 +9,9 @@
     padding: 0;
 }
 
-/*----------- Standardeinstellungen werden  ------------*/
+/*------------------------------
+        BODY
+------------------------------*/
 
 body {
     margin: 0 auto;
@@ -18,6 +20,10 @@ body {
     font: 13px/22px Helvetica, Arial, sans-serif;
     background-image: url("hintergrund.jpg");
     background-repeat: repeat;
+}
+
+.hidden{
+    display: none;
 }
 
 /*------------------------------
@@ -88,14 +94,19 @@ textarea {
     color: white;
 }
 
-    /*------------------------------
-            Post
-    ------------------------------*/
+/*------------------------------
+        Post
+------------------------------*/
 
 .post{
     width: 100%;
     min-height: 100px;
     padding: 10px;
+}
+
+.comment{
+    padding: 5px;
+
 }
 
 

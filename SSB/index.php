@@ -6,15 +6,22 @@ require_once __DIR__ . '/Model/Users.php';
 require_once __DIR__ . '/Model/Blogs.php';
 require_once __DIR__ . '/Class/Post.php';
 require_once __DIR__ . '/Model/Comments.php';
+require_once __DIR__ . '/Class/Comment.php';
 require_once __DIR__ . '/Controller/menuController.php';
 require_once __DIR__ . '/Controller/sessionController.php';
 
 $usermapper = new Users();
 $blogmapper = new Blogs();
+$commentmapper = new Comments();
+
+
 SessionController::initializeSessionManager();
 ?>
 
 <body>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script> <!-- JQueri-Einbindung -->
+
 
 <header id="header">
 
@@ -95,7 +102,9 @@ SessionController::initializeSessionManager();
         </header>
         <?php
         $posts = $blogmapper->getEntries();
-        $key=0;
+        $allcomments = $commentmapper->getComments();
+
+        $key = 0;
         foreach ($posts as $post) {
             $key++;
             $user = $usermapper->getUserById($post->getUserId());
@@ -106,15 +115,64 @@ SessionController::initializeSessionManager();
             if (SessionController::isLoggedIn() && SessionController::get('id') == $post->getUserId()) {
                 echo "<form action='delete.php?id=" . $post->getId() . "' method='post'><button class='delbutton' type='submit'>Post löschen</button></form>";
             }
-            if(SessionController::isLoggedIn()){
-                echo "<form action='/index.php?postId='" . $post->getId() . "' method='post'><button class='commentButton' type='submit'>Kommentieren</button></form>";
+
+            $comments = [];
+
+            foreach ($allcomments as $comment) {
+                if ($comment->getBlogId() == $post->getId()) {
+                    array_push($comments, $comment);
+                }
+            }
+
+            if (count($comments) > 0) {
+                echo "<h4>Kommentare</h4>";
+            }
+
+            foreach ($comments as $comment) {
+                echo "<div class='comment'>";
+                echo "<div class='commentAuthor'>" . $usermapper->getUserById($comment->getUserId())->getEmail() . " am " .$comment->getDateTime()->format('Y-m-d H:i')."</div>";
+                echo "<div class='commentContent'>".$comment->getComment()."</div>";
+                echo "</div>";
+            }
+
+
+            if (SessionController::isLoggedIn()) {
+                echo "<form action='addComment.php' method='post'>";
+                $postId = $post->getId();
+                echo "<input type='text' name='postId' class='hidden' value='" . $postId . "'></input>";
+                echo "<textarea id='commentField" . $postId . "' name='comment' rows='5' cols='100' class='hidden'></textarea>";
+                echo "<button id='comment" . $postId . "' class='commentButton' type='submit'>Kommentieren</button>";
+                echo "</form>";
+
+
+                echo "
+                <script>
+                    var field" . $postId . " = $('#commentField" . $postId . "');
+                    var button" . $postId . " = $('#comment" . $postId . "');
+                    $(button" . $postId . ").click(function(event) {
+                        
+                        if(field" . $postId . ".css('display')=='none'){
+                            event.preventDefault();
+                            $(field" . $postId . ").css('display','block');
+                        }else if($.trim($(field" . $postId . ").val())==''){
+                            event.preventDefault();
+                            alert('Bitte geben Sie etwas ein.');
+                        }
+                    });
+                
+                </script>
+                
+                
+                
+                
+                ";
+
+
             }
             echo "</div>";
 
-
         }
         ?>
-
 
     </section>
 
@@ -123,5 +181,3 @@ SessionController::initializeSessionManager();
 <?php include_once __DIR__ . '/View/body/footer.html'; ?>
 </body>
 </html>
-
-

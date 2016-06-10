@@ -24,17 +24,17 @@ class Comment
         return $this->blogId;
     }
 
-    public function setBlogid($blogId)
+    public function setBlogId($blogId)
     {
         $this->blogid = $blogId;
     }
 
-    public function getUserid()
+    public function getUserId()
     {
         return $this->userId;
     }
 
-    public function setUserid($userId)
+    public function setUserId($userId)
     {
         $this->userid = $userId;
     }
